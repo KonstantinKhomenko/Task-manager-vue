@@ -25,6 +25,11 @@ export default {
 <style lang="scss" scoped>
 .navbar {
   padding: 0 2rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 20px rgba(107, 73, 73, 0.3);
+
+  .nav-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+  }
 }
 </style>

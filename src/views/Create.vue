@@ -5,13 +5,7 @@
 
       <form :model="formData" @submit.prevent="submitHandler">
         <div class="input-field">
-          <input
-            id="title"
-            type="text"
-            class="validate"
-            required
-            v-model="formData.title"
-          />
+          <input id="title" type="text" class="validate" required v-model="formData.title" />
           <label for="title">Title</label>
           <span class="helper-text" data-error="Title is required"></span>
         </div>
@@ -19,15 +13,12 @@
         <div class="chips" ref="chips"></div>
 
         <div class="input-field">
-          <textarea
-            id="description"
-            class="materialize-textarea"
-            v-model="formData.description"
-          ></textarea>
+          <textarea id="description" class="materialize-textarea" v-model="formData.description"></textarea>
           <label for="description">Textarea</label>
-          <span class="character-counter" style="float: right; font-size: 12px;"
-            >{{ formData.description.length || 0 }}/2048</span
-          >
+          <span
+            class="character-counter"
+            style="float: right; font-size: 12px;"
+          >{{ formData.description.length || 0 }}/2048</span>
         </div>
 
         <input type="text" ref="datepicker" v-model="formData.date" />
@@ -63,7 +54,8 @@ export default {
         date: this.formData.date.date
       };
 
-      console.log(task);
+      this.$store.dispatch('createTask', task);
+      this.$router.push({ name: 'List' });
     }
   },
 
