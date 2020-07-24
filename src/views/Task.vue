@@ -22,9 +22,10 @@
 
         <input type="text" ref="datepicker" v-model="formData.date" />
 
-        <button class="btn btn-update" type="submit">Update</button>
-
-        <button class="btn green" type="button">Complete task</button>
+        <div v-if="currentTask.status !== 'complete'">
+          <button class="btn btn-update" type="submit">Update</button>
+          <button class="btn green" type="button" @click="completeTask">Complete task</button>
+        </div>
       </form>
     </div>
 
@@ -51,13 +52,19 @@ export default {
   },
 
   methods: {
-    ...mapActions(['findTaskById', 'updateTask']),
+    ...mapActions(['findTaskById', 'updateTask', 'changeStatus']),
     submitHandler() {
       this.updateTask({
         description: this.formData.description,
         id: this.currentTask.id,
         date: this.formData.date.date
       });
+
+      this.$router.push({ name: 'List' });
+    },
+
+    completeTask() {
+      this.changeStatus(this.currentTask.id);
 
       this.$router.push({ name: 'List' });
     }
